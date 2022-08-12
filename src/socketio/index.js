@@ -17,4 +17,5 @@ server.on("connection", function (socket) {
 });
 
 instrument(server, { auth: false });
-httpServer.listen(3000);
+
+export { httpServer };
