@@ -18,4 +18,4 @@ server.on("connection", function (socket) {
 
 instrument(server, { auth: false });
 
-export { httpServer };
+httpServer.listen(3000);
