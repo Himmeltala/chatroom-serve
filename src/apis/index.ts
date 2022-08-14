@@ -1,5 +1,5 @@
 import express from "express";
-import { queryUserAllByUname } from "../database/index.js";
+import { queryUserAllByUname } from "../database/funcs";
 
 const apis = express();
 

@@ -8,9 +8,9 @@ const server = new Server(httpServer, { cors: { origin: true, credentials: true 
 /**
  * 监听客户端连接
  */
-server.on("connection", function (socket) {
+server.on("connection", function (socket: any) {
 
-  socket.on("sending", function (e) {
+  socket.on("sending", function (e: any) {
     socket.broadcast.emit("broadcast", e);
   });
 
