@@ -1,3 +1,7 @@
 import express from "express";
+import cors from "cors";
 
-export default express();
+const server = express();
+server.use(cors());
+
+export default server;
