@@ -11,3 +11,5 @@
 3. models 专门负责数据模型。
 4. server 是 express 相关配置。
 5. socket 是与前端实时通信的套接字程序。
+
+![](./docs/structure.png)
