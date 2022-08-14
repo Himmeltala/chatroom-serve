@@ -13,8 +13,5 @@ export async function queryUsersAll() {
  * @param pwd 密码
  */
 export async function queryUserAllByUname(uname: string, pwd: string) {
-  return knex("users").select().where({
-    "username": uname,
-    "password": pwd
-  });
+  return knex("users").select().where({ "username": uname, "password": pwd });
 }
