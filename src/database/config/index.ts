@@ -1,6 +1,6 @@
 import knex from "knex";
 
-const database = knex({
+export default knex({
   client: "mysql2",
   connection: {
     host: "127.0.0.1",
@@ -10,5 +10,3 @@ const database = knex({
     database: "chatroom"
   }
 });
-
-export { database };

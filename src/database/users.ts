@@ -1,10 +1,10 @@
-import { database } from "./configs";
+import knex from "./config";
 
 /**
  * 查询用户列表的所有字段
  */
 export async function queryUsersAll() {
-  return database.select().from("users");
+  return knex("users").select();
 }
 
 /**
@@ -12,5 +12,5 @@ export async function queryUsersAll() {
  * @param uname 用户名
  */
 export async function queryUserAllByUname(uname) {
-  return database.select().from("users").where("username", uname);
+  return knex("users").select().where("username", uname);
 }
