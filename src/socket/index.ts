@@ -1,6 +1,7 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
 import { instrument } from "@socket.io/admin-ui";
+import { updateUser } from "../database/userDB";
 
 const httpServer = createServer();
 const server = new Server(httpServer, {
@@ -10,9 +11,15 @@ const server = new Server(httpServer, {
 /**
  * 监听客户端连接
  */
-server.on("connection", function (socket: any) {
-  socket.on("sending", function (e: any) {
+server.on("connection", (socket: any) => {
+  socket.on("sending", (e: any) => {
     socket.broadcast.emit("broadcast", e);
+  });
+
+  socket.on("disconnect", () => {
+    updateUser({ is_online: 0, socket_id: "" }, [], () => {
+      return { socket_id: socket.id };
+    });
   });
 });
 
