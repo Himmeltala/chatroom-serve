@@ -6,7 +6,7 @@ export async function queryUserByUnameAndPwd(username: string, password: string)
   return knex<UserModel>("users").select().where({ username, password });
 }
 
-export async function updateUser(data: UserModel, exclude: Array<string>, whereClause: normalizeWhereClause) {
+export async function updateUser(data: UserModel, exclude: Array<string>, whereClause: normalizeWhereClause): Promise<number> {
   return knex("users").where(whereClause()).update(cutModel(data, exclude));
 }
 

@@ -6,7 +6,7 @@ app.post("/login", async (req, res) => {
   let data = await queryUserByUnameAndPwd(req.body.username, req.body.password);
   res.send(
     handleSelect(data, () => {
-      res.cookie("USERID", data[0].id, { domain: "localhost", maxAge: 60000 * 60 * 24 });
+      res.cookie("USERINFO", JSON.stringify(data[0]), { domain: "localhost", maxAge: 60000 * 60 * 24 });
     })
   );
 });

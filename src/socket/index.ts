@@ -5,7 +5,7 @@ import { updateUser } from "../database/userDB";
 
 const httpServer = createServer();
 const server = new Server(httpServer, {
-  cors: { origin: true, credentials: true },
+  cors: { origin: true, credentials: true }
 });
 
 /**
@@ -14,6 +14,10 @@ const server = new Server(httpServer, {
 server.on("connection", (socket: any) => {
   socket.on("sending", (e: any) => {
     socket.broadcast.emit("broadcast", e);
+  });
+
+  socket.on("send-private", (e: any) => {
+    socket.to(e.socket_id).emit("echo-private", e);
   });
 
   socket.on("disconnect", () => {
