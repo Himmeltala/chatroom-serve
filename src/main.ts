@@ -1,5 +1,5 @@
 import socket from "./socket";
-import app from "./server/";
+import app from "./express";
 import "./apis";
 
 socket.listen(3000);
