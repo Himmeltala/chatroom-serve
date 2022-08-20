@@ -3,10 +3,10 @@ import { queryFriends, queryUserByUnameAndPwd, updateUser } from "../database/us
 import { handleSelect, handleUpdateUser } from "../service/userService";
 
 app.post("/login", async (req, res) => {
-  let data = await queryUserByUnameAndPwd(req.body.username, req.body.password);
+  let users = await queryUserByUnameAndPwd(req.body.username, req.body.password);
   res.send(
-    handleSelect(data, () => {
-      res.cookie("USERINFO", JSON.stringify(data[0]), { domain: "localhost", maxAge: 60000 * 60 * 24 });
+    handleSelect(users, () => {
+      res.cookie("USERINFO", JSON.stringify(users[0]), { domain: "localhost", maxAge: 60000 * 60 * 24 });
     })
   );
 });
@@ -19,6 +19,6 @@ app.post("/update/user", async (req, res) => {
 });
 
 app.post("/query/friends", async (req, res) => {
-  let data = await queryFriends(req.body);
-  res.send(handleSelect(data));
+  let friends = await queryFriends(req.body);
+  res.send(handleSelect(friends));
 });

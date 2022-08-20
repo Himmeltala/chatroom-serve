@@ -1,13 +1,13 @@
 import knex from "./config";
 import { UserModel } from "../models/userModel";
-import { cutModel, normalizeWhereClause } from "../service/db/userDbService";
+import { reduceFileds, normalizeWhereClause } from "../service/db/userDbService";
 
 export async function queryUserByUnameAndPwd(username: string, password: string): Promise<Array<UserModel>> {
   return knex<UserModel>("users").select().where({ username, password });
 }
 
 export async function updateUser(data: UserModel, exclude: Array<string>, whereClause: normalizeWhereClause): Promise<number> {
-  return knex("users").where(whereClause()).update(cutModel(data, exclude));
+  return knex("users").where(whereClause()).update(reduceFileds(data, exclude));
 }
 
 export async function queryFriends(data: UserModel) {

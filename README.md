@@ -13,3 +13,7 @@
 5. socket 是与前端实时通信的套接字程序。
 
 ![](./docs/structure.jpg)
+
+# 数据库 SQL
+
+数据库的 SQL 存放在 docs/sql 目录下，需要启动的自取，把表格数据插入到 MYSQL 中。连接数据库的配置需要在 src/database/config 更改。
