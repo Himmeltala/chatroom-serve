@@ -5,12 +5,9 @@ import { updateUser } from "../database/userDB";
 
 const httpServer = createServer();
 const server = new Server(httpServer, {
-  cors: { origin: true, credentials: true },
+  cors: { origin: true, credentials: true }
 });
 
-/**
- * 监听客户端连接
- */
 server.on("connection", (socket: any) => {
   socket.on("emit-private", (e: any) => {
     socket.to(e.socket_id).emit("echo-private", e);

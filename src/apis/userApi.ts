@@ -1,5 +1,5 @@
 import app from "../express";
-import { queryFriends, queryUserByUnameAndPwd, updateUser } from "../database/userDB";
+import { queryFriends, queryGroups, queryUserByUnameAndPwd, updateUser } from "../database/userDB";
 import { handleSelect, handleUpdateUser } from "../service/userService";
 
 app.post("/login", async (req, res) => {
@@ -21,4 +21,9 @@ app.post("/update/user", async (req, res) => {
 app.post("/query/friends", async (req, res) => {
   let friends = await queryFriends(req.body);
   res.send(handleSelect(friends));
+});
+
+app.post("/query/groups", async (req, res) => {
+  let groups = await queryGroups(req.body);
+  res.send(handleSelect(groups));
 });

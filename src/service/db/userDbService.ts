@@ -1,4 +1,4 @@
-import { UserModel } from "../../models/userModel";
+import UserModel from "../../models/userModel";
 
 export function reduceFileds(data: UserModel, exclude: Array<string>): UserModel {
   if (exclude.length > 0) {
