@@ -1,29 +1,33 @@
 import app from "../express";
 import { queryFriends, queryGroups, queryUserByUnameAndPwd, updateUser } from "../database/userDB";
-import { handleSelect, handleUpdateUser } from "../service/userService";
+import { inspectArrayIsEmpty, formatResponseData } from "../service/common";
 
 app.post("/login", async (req, res) => {
   let users = await queryUserByUnameAndPwd(req.body.username, req.body.password);
-  res.send(
-    handleSelect(users, () => {
-      res.cookie("USERINFO", JSON.stringify(users[0]), { domain: "localhost", maxAge: 60000 * 60 * 24 });
-    })
-  );
+  inspectArrayIsEmpty(users, users => {
+    res.cookie("USERINFO", JSON.stringify(users[0]), {
+      domain: "localhost",
+      maxAge: 60000 * 60 * 24
+    });
+    res.send(formatResponseData({ codes: { well: 200 }, data: users }, () => true));
+  });
 });
 
 app.post("/update/user", async (req, res) => {
-  let flag = await updateUser(req.body, ["id"], () => {
-    return { id: req.body.id };
-  });
-  res.send(handleUpdateUser(flag));
+  let flag = await updateUser(req.body, { id: req.body.id }, ["id"]);
+  res.send(formatResponseData({ codes: { well: 200, bad: 404 }, data: flag }, () => flag === 1));
 });
 
 app.post("/query/friends", async (req, res) => {
   let friends = await queryFriends(req.body);
-  res.send(handleSelect(friends));
+  inspectArrayIsEmpty(friends, friends => {
+    res.send(formatResponseData({ codes: { well: 200 }, data: friends }, () => true));
+  });
 });
 
 app.post("/query/groups", async (req, res) => {
   let groups = await queryGroups(req.body);
-  res.send(handleSelect(groups));
+  inspectArrayIsEmpty(groups, groups => {
+    res.send(formatResponseData({ codes: { well: 200 }, data: groups }, () => true));
+  });
 });

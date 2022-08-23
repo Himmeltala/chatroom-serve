@@ -13,10 +13,12 @@ server.on("connection", (socket: any) => {
     socket.to(e.socket_id).emit("echo-private", e);
   });
 
+  socket.on("emit-public", (e: any) => {
+    socket.to(e.room_id).emit("echo-public", e);
+  });
+
   socket.on("disconnect", () => {
-    updateUser({ is_online: 0, socket_id: "" }, [], () => {
-      return { socket_id: socket.id };
-    });
+    updateUser({ socket_id: "", is_online: 0 }, { socket_id: socket.id });
   });
 });
 

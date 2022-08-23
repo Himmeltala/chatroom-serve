@@ -1,9 +1,12 @@
 import knex from "./config";
 import UserModel from "../models/userModel";
 import GroupModel from "../models/groupModel";
-import { reduceFileds, normalizeWhereClause } from "../service/db/userDbService";
+import { clipFileds } from "../service/common";
 
-export async function queryUserByUnameAndPwd(username: string, password: string): Promise<Array<UserModel>> {
+export async function queryUserByUnameAndPwd(
+  username: string,
+  password: string
+): Promise<Array<UserModel>> {
   return knex<UserModel>("users")
     .where({
       username,
@@ -12,8 +15,12 @@ export async function queryUserByUnameAndPwd(username: string, password: string)
     .select();
 }
 
-export async function updateUser(data: UserModel, exclude: Array<string>, whereClause: normalizeWhereClause): Promise<number> {
-  return knex("users").where(whereClause()).update(reduceFileds(data, exclude));
+export async function updateUser(
+  data: UserModel,
+  clause: UserModel,
+  excludes?: Array<string>
+): Promise<number> {
+  return knex("users").where(clause).update(clipFileds(data, excludes));
 }
 
 export async function queryFriends(data: UserModel) {
