@@ -1,4 +1,4 @@
-import knex from "./config";
+import knex from "./database";
 import UserModel from "../models/userModel";
 import GroupModel from "../models/groupModel";
 import { clipFileds } from "../service/common";

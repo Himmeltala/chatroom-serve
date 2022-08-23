@@ -48,7 +48,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10000,0,'','shiramashiro','123456','11111111111','2022-08-12','2000-04-08','https://img2.baidu.com/it/u=3047746964,2762111262&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500','https://img2.baidu.com/it/u=1551332060,3851187886&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=501',0,'这个人很懒，什么也没有留下','龙','白羊','1'),(10001,0,'','Enziandom','123456','11111111111','2022-08-18','2000-07-18','https://img0.baidu.com/it/u=4015738813,598225989&fm=253&fmt=auto&app=120&f=JPEG?w=600&h=600','https://img1.baidu.com/it/u=4066251288,3860549911&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',0,'这个人很懒，什么也没有留下','龙','巨蟹','1'),(10002,0,'','emiliaten','123456','11111111111','2022-08-18','2000-08-18','https://img2.baidu.com/it/u=3047746964,2762111262&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500','https://img0.baidu.com/it/u=85593985,1990100627&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',0,'这个人很懒，什么也没有留下','龙','狮子','未知');
+INSERT INTO `users` VALUES (10000,1,'G6DmgytFcA8H2NAyAAAB','shiramashiro','123456','11111111111','2022-08-12','2000-04-08','https://img2.baidu.com/it/u=3047746964,2762111262&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500','https://img2.baidu.com/it/u=1551332060,3851187886&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=501',0,'这个人很懒，什么也没有留下','龙','白羊','1'),(10001,1,'I9Ma4H6cBvttHMnYAAAD','Enziandom','123456','11111111111','2022-08-18','2000-07-18','https://img0.baidu.com/it/u=4015738813,598225989&fm=253&fmt=auto&app=120&f=JPEG?w=600&h=600','https://img1.baidu.com/it/u=4066251288,3860549911&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',0,'这个人很懒，什么也没有留下','龙','巨蟹','1'),(10002,0,'','emiliaten','123456','11111111111','2022-08-18','2000-08-18','https://img2.baidu.com/it/u=3047746964,2762111262&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500','https://img0.baidu.com/it/u=85593985,1990100627&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',0,'这个人很懒，什么也没有留下','龙','狮子','未知');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-20 14:45:47
+-- Dump completed on 2022-08-23 21:31:46

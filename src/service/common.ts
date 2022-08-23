@@ -1,7 +1,7 @@
 import { NormalizeResponse, NormalizeCodes } from "./normalizations";
 
-export function inspectArrayIsEmpty(array: Array<any>, exist?: (data: any) => void): void {
-  if (array.length > 0 && array) {
+export function inspectArrayIsEmpty<T>(array: Array<T>, exist?: (data: Array<T>) => void): void {
+  if (array ? array.length > 0 : false) {
     exist && exist(array);
   }
 }
@@ -20,7 +20,7 @@ export function formatResponseData(
   }
 }
 
-export function clipFileds(data: any, excludes?: Array<string>): any {
+export function clipFileds<T>(data: T, excludes?: Array<string>): T {
   if (excludes ? excludes.length : false) {
     for (let key in excludes) {
       delete data[excludes[key]];

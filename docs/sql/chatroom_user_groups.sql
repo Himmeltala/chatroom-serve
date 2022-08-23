@@ -16,28 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `friends`
+-- Table structure for table `user_groups`
 --
 
-DROP TABLE IF EXISTS `friends`;
+DROP TABLE IF EXISTS `user_groups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `friends` (
-  `id` int NOT NULL COMMENT '与用户是好友的用户ID',
-  `user_id` int NOT NULL COMMENT '用户ID，持有该好友关系的用户',
-  KEY `fk_user_id` (`user_id`),
-  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='好友列表';
+CREATE TABLE `user_groups` (
+  `user_id` int NOT NULL COMMENT '用户ID，所属群聊的用户',
+  `group_id` int NOT NULL COMMENT '群聊ID',
+  KEY `fk_user_id_idx` (`user_id`),
+  KEY `user_groups_ibfk_2` (`group_id`),
+  CONSTRAINT `user_groups_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `user_groups_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `friends`
+-- Dumping data for table `user_groups`
 --
 
-LOCK TABLES `friends` WRITE;
-/*!40000 ALTER TABLE `friends` DISABLE KEYS */;
-INSERT INTO `friends` VALUES (10001,10000),(10002,10000),(10000,10001),(10000,10002);
-/*!40000 ALTER TABLE `friends` ENABLE KEYS */;
+LOCK TABLES `user_groups` WRITE;
+/*!40000 ALTER TABLE `user_groups` DISABLE KEYS */;
+INSERT INTO `user_groups` VALUES (10000,10000),(10001,10000),(10002,10000),(10000,10001);
+/*!40000 ALTER TABLE `user_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-23 21:31:47
+-- Dump completed on 2022-08-23 21:31:48

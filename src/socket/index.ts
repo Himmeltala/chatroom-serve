@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
 import { instrument } from "@socket.io/admin-ui";
-import { updateUser } from "../database/userDB";
+import { updateUser } from "../providers/userProvider";
 
 const httpServer = createServer();
 const server = new Server(httpServer, {

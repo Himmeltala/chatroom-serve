@@ -16,28 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `friends`
+-- Table structure for table `groups`
 --
 
-DROP TABLE IF EXISTS `friends`;
+DROP TABLE IF EXISTS `groups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `friends` (
-  `id` int NOT NULL COMMENT '与用户是好友的用户ID',
-  `user_id` int NOT NULL COMMENT '用户ID，持有该好友关系的用户',
-  KEY `fk_user_id` (`user_id`),
-  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='好友列表';
+CREATE TABLE `groups` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '群聊ID',
+  `name` varchar(20) NOT NULL COMMENT '群聊名称',
+  `avatar` varchar(255) NOT NULL DEFAULT 'https://img2.baidu.com/it/u=1106562152,3959779457&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400' COMMENT '群聊头像',
+  `desc` varchar(100) NOT NULL DEFAULT '这个群主很懒，什么也没有留下' COMMENT '群聊描述',
+  `created_date` date NOT NULL COMMENT '群聊创建日期',
+  `room_id` varchar(100) DEFAULT NULL COMMENT '群聊的 Room 标识符',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10002 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `friends`
+-- Dumping data for table `groups`
 --
 
-LOCK TABLES `friends` WRITE;
-/*!40000 ALTER TABLE `friends` DISABLE KEYS */;
-INSERT INTO `friends` VALUES (10001,10000),(10002,10000),(10000,10001),(10000,10002);
-/*!40000 ALTER TABLE `friends` ENABLE KEYS */;
+LOCK TABLES `groups` WRITE;
+/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
+INSERT INTO `groups` VALUES (10000,'群聊1','https://img2.baidu.com/it/u=1106562152,3959779457&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400','这个群主很懒，什么也没有留下','2022-08-22','Room1'),(10001,'群聊2','https://img2.baidu.com/it/u=1367530917,2679940409&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400','这个群主很懒，什么也没有留下','2022-08-22','Room2');
+/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-23 21:31:47
+-- Dump completed on 2022-08-23 21:31:48

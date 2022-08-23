@@ -1,5 +1,10 @@
 import app from "../express";
-import { queryFriends, queryGroups, queryUserByUnameAndPwd, updateUser } from "../database/userDB";
+import {
+  queryFriends,
+  queryGroups,
+  queryUserByUnameAndPwd,
+  updateUser
+} from "../providers/userProvider";
 import { inspectArrayIsEmpty, formatResponseData } from "../service/common";
 
 app.post("/login", async (req, res) => {
