@@ -13,8 +13,12 @@ server.on("connection", (socket: any) => {
     socket.to(e.socket_id).emit("echo-private", e);
   });
 
+  socket.on("emit-join-public", (e: any) => {
+    socket.join(e.room_id);
+  });
+
   socket.on("emit-public", (e: any) => {
-    socket.to(e.room_id).emit("echo-public", e);
+    socket.to(e.socket_id).emit("echo-public", e);
   });
 
   socket.on("disconnect", () => {
