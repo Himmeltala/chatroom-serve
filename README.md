@@ -1,3 +1,11 @@
+# 运行项目
+
+全局安装 ts-node、typescript、nodemon。
+
+```npm
+npm i -g ts-node typescript nodemon
+```
+
 # 项目说明
 
 后端项目使用的技术栈：
