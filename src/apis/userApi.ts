@@ -1,21 +1,18 @@
 import app from "../express";
-import {
-  queryFriends,
-  queryGroups,
-  queryUserByUnameAndPwd,
-  updateUser
-} from "../providers/userProvider";
+import { queryFriends, queryGroups, queryUserByUnameAndPwd, updateUser } from "../providers/userProvider";
 import { inspectArrayIsEmpty, formatResponseData } from "../service/common";
 
 app.post("/login", async (req, res) => {
   let users = await queryUserByUnameAndPwd(req.body.username, req.body.password);
-  inspectArrayIsEmpty(users, users => {
+  if (users.length > 0) {
     res.cookie("USERINFO", JSON.stringify(users[0]), {
       domain: "localhost",
       maxAge: 60000 * 60 * 24
     });
     res.send(formatResponseData({ codes: { well: 200 }, data: users }, () => true));
-  });
+  } else {
+    res.send(formatResponseData({ codes: { bad: 404 }, data: users }, () => true));
+  }
 });
 
 app.post("/update/user", async (req, res) => {
