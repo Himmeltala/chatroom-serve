@@ -3,23 +3,11 @@ import UserModel from "../models/userModel";
 import GroupModel from "../models/groupModel";
 import { clipFileds } from "../service/common";
 
-export async function queryUserByUnameAndPwd(
-  username: string,
-  password: string
-): Promise<Array<UserModel>> {
-  return knex<UserModel>("users")
-    .where({
-      username,
-      password
-    })
-    .select();
+export async function queryUserByUnameAndPwd(username: string, password: string): Promise<Array<UserModel>> {
+  return knex<UserModel>("users").where({ username, password }).select();
 }
 
-export async function updateUser(
-  data: UserModel,
-  clause: UserModel,
-  excludes?: Array<string>
-): Promise<number> {
+export async function updateUser(data: UserModel, clause: UserModel, excludes?: Array<string>): Promise<number> {
   return knex("users").where(clause).update(clipFileds(data, excludes));
 }
 
