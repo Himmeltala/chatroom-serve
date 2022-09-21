@@ -1,17 +1,16 @@
 import knex from "./database";
-import UserModel from "../models/userModel";
-import GroupModel from "../models/groupModel";
+import { IUser, IGroup } from "../types";
 import { clipFileds } from "../service/common";
 
-export async function queryUserByUnameAndPwd(username: string, password: string): Promise<Array<UserModel>> {
-  return knex<UserModel>("users").where({ username, password }).select();
+export async function queryUserByUnameAndPwd(username: string, password: string): Promise<Array<IUser>> {
+  return knex<IUser>("users").where({ username, password }).select();
 }
 
-export async function updateUser(data: UserModel, clause: UserModel, excludes?: Array<string>): Promise<number> {
-  return knex("users").where(clause).update(clipFileds(data, excludes));
+export async function updateUser(user: IUser, clause: IUser, excludes?: Array<string>): Promise<number> {
+  return knex("users").where(clause).update(clipFileds(user, excludes));
 }
 
-export async function queryFriends(data: UserModel) {
+export async function queryFriends(data: IUser) {
   return knex("users as u")
     .where({
       "u.id": data.id
@@ -25,9 +24,9 @@ export async function queryFriends(data: UserModel) {
     .select("u2.*");
 }
 
-export async function queryGroups(data: UserModel): Promise<Array<GroupModel>> {
+export async function queryGroups(user: IUser): Promise<Array<IGroup>> {
   return knex("chatroom.groups as g")
-    .where({ "u.id": data.id })
+    .where({ "u.id": user.id })
     .join("user_groups as ug", function () {
       this.on("ug.group_id", "=", "g.id");
     })

@@ -1,4 +1,13 @@
-interface UserModel {
+export interface IGroup {
+  id: number;
+  name: string;
+  avatar: string;
+  desc: string;
+  created_date?: Date;
+  room_id?: string;
+}
+
+export interface IUser {
   id?: number;
   is_online?: number;
   socket_id?: string;
@@ -15,5 +24,3 @@ interface UserModel {
   constellation?: string;
   sex?: string;
 }
-
-export default UserModel;
