@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
 import { instrument } from "@socket.io/admin-ui";
-import { updateUser } from "../providers/userProvider";
+import { UserProvider } from "../providers";
 
 const httpServer = createServer();
 const server = new Server(httpServer, {
@@ -22,10 +22,10 @@ server.on("connection", (socket: any) => {
   });
 
   socket.on("disconnect", () => {
-    updateUser({ socket_id: "", is_online: 0 }, { socket_id: socket.id });
+    UserProvider.updateUser({ socket_id: "", is_online: 0 }, { socket_id: socket.id });
   });
 });
 
 instrument(server, { auth: false });
 
-export default httpServer;
+httpServer.listen(3000);

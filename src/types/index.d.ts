@@ -1,4 +1,4 @@
-export interface IGroup {
+declare interface IGroup {
   id: number;
   name: string;
   avatar: string;
@@ -7,7 +7,7 @@ export interface IGroup {
   room_id?: string;
 }
 
-export interface IUser {
+declare interface IUser {
   id?: number;
   is_online?: number;
   socket_id?: string;
@@ -23,4 +23,14 @@ export interface IUser {
   zodiac?: string;
   constellation?: string;
   sex?: string;
+}
+
+declare interface NormalizeResponse {
+  status?: number;
+  data?: any;
+}
+
+declare interface NormalizeCodes {
+  well?: number;
+  bad?: number;
 }

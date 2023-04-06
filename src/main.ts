@@ -1,6 +1,4 @@
-import socket from "./socket";
-import app from "./express";
-import "./apis";
+/// <reference path="./types/index.d.ts" />
 
-socket.listen(3000);
-app.listen(3005);
+import "./apis";
+import "./socket";
